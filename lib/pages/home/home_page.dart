@@ -8,7 +8,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Widget _transactionButton(String icon, String text) {
+    Widget transactionButton(String icon, String text) {
       return Expanded(
         child: Container(
           constraints: const BoxConstraints.expand(
@@ -39,6 +39,52 @@ class HomePage extends StatelessWidget {
               ),
             ],
           ),
+        ),
+      );
+    }
+
+    Widget _transactionList(
+        Color bgColor, String icon, String title, String sub, String amount) {
+      return Padding(
+        padding: const EdgeInsets.only(bottom: 30),
+        child: Row(
+          children: [
+            SizedBox(
+                height: 30,
+                width: 30,
+                child: CircleAvatar(
+                  backgroundColor: bgColor,
+                  child: Image(
+                    image: AssetImage(icon),
+                    height: 14,
+                  ),
+                )),
+            const SizedBox(width: 10),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  title,
+                  style: kBody1.copyWith(
+                    color: kLuckyBlue,
+                  ),
+                ),
+                Text(
+                  sub,
+                  style: kCaption.copyWith(
+                    color: kLightGray,
+                  ),
+                ),
+              ],
+            ),
+            const Spacer(),
+            Text(
+              amount,
+              style: kBody1.copyWith(
+                color: kLuckyBlue,
+              ),
+            ),
+          ],
         ),
       );
     }
@@ -159,14 +205,14 @@ class HomePage extends StatelessWidget {
                   const SizedBox(height: 30),
                   Row(
                     children: [
-                      _transactionButton(
+                      transactionButton(
                         'assets/icons/save.png',
                         'Save Money',
                       ),
                       const SizedBox(
                         width: 20,
                       ),
-                      _transactionButton(
+                      transactionButton(
                         'assets/icons/pay.png',
                         'Pay',
                       ),
@@ -174,6 +220,99 @@ class HomePage extends StatelessWidget {
                   )
                 ],
               )),
+          Container(
+            child:
+                DraggableScrollableSheet(builder: (context, scrollController) {
+              return Container(
+                  padding: const EdgeInsets.only(left: 30, right: 30, top: 21),
+                  decoration: const BoxDecoration(
+                    color: kWhite,
+                    borderRadius: BorderRadius.vertical(
+                      top: Radius.circular(40),
+                    ),
+                  ),
+                  child: Stack(
+                    children: [
+                      Container(
+                        margin: const EdgeInsets.only(top: 14 + 4),
+                        child: SingleChildScrollView(
+                          controller: scrollController,
+                          child: Column(
+                            children: [
+                              Center(
+                                child: Text(
+                                  'Transaction History',
+                                  style: kHeading6.copyWith(
+                                    color: kLuckyBlue,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(height: 31),
+                              _transactionList(
+                                  kTreeGreen.withOpacity(0.2),
+                                  'assets/icons/triangle-up.png',
+                                  'Success!',
+                                  'February 19, 03:25 PM',
+                                  '+ Rp. 1.000.000'),
+                              _transactionList(
+                                  kTreeGreen.withOpacity(0.2),
+                                  'assets/icons/triangle-up.png',
+                                  'Success!',
+                                  'February 19, 03:25 PM',
+                                  '+ Rp. 9.000.000'),
+                              _transactionList(
+                                  kOrange.withOpacity(0.2),
+                                  'assets/icons/triangle-down.png',
+                                  'Sturbucks!',
+                                  'February 19, 03:25 PM',
+                                  '+ Rp. 9.000.000'),
+                              _transactionList(
+                                  kOrange.withOpacity(0.2),
+                                  'assets/icons/triangle-down.png',
+                                  'Sturbucks!',
+                                  'February 19, 03:25 PM',
+                                  '+ Rp. 9.000.000'),
+                              _transactionList(
+                                  kOrange.withOpacity(0.2),
+                                  'assets/icons/triangle-down.png',
+                                  'Sturbucks!',
+                                  'February 19, 03:25 PM',
+                                  '+ Rp. 9.000.000'),
+                              _transactionList(
+                                  kOrange.withOpacity(0.2),
+                                  'assets/icons/triangle-down.png',
+                                  'Sturbucks!',
+                                  'February 19, 03:25 PM',
+                                  '+ Rp. 9.000.000'),
+                              _transactionList(
+                                  kOrange.withOpacity(0.2),
+                                  'assets/icons/triangle-down.png',
+                                  'Sturbucks!',
+                                  'February 19, 03:25 PM',
+                                  '+ Rp. 9.000.000'),
+                              _transactionList(
+                                  kTreeGreen.withOpacity(0.2),
+                                  'assets/icons/triangle-up.png',
+                                  'Success!',
+                                  'February 19, 03:25 PM',
+                                  '+ Rp. 9.000.000'),
+                            ],
+                          ),
+                        ),
+                      ),
+                      Align(
+                        alignment: Alignment.topCenter,
+                        child: Container(
+                          height: 4,
+                          width: 49,
+                          color: kEgyptianBlue.withOpacity(0.1),
+                        ),
+                      )
+                    ],
+                  ));
+            }),
+          ),
         ],
       ),
     ));
