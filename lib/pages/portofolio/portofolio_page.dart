@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:percent_indicator/percent_indicator.dart';
 import 'package:saving_app/styles/colors.dart';
 import 'package:saving_app/styles/text_style.dart';
 
@@ -66,6 +67,59 @@ class PortfolioPage extends StatelessWidget {
                 blurRadius: 3,
                 offset: Offset.fromDirection(1, 2),
               ),
+            ],
+          ),
+          child: Row(
+            children: [
+              Container(
+                height: 55,
+                width: 55,
+                child: CircleAvatar(
+                  backgroundColor: kTropicalBlue,
+                  child: Image.asset(
+                    'assets/icons/pension.png',
+                    width: 24,
+                  ),
+                ),
+              ),
+              const SizedBox(
+                width: 15,
+              ),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text('Pension savings funds', style: kSubtitle1),
+                    const SizedBox(
+                      height: 12,
+                    ),
+                    LinearPercentIndicator(
+                      lineHeight: 4,
+                      percent: 0.3,
+                      padding: const EdgeInsets.symmetric(horizontal: 0),
+                      progressColor: kBlueRibbon,
+                      backgroundColor: kGrey.withOpacity(0.3),
+                    ),
+                    const SizedBox(
+                      height: 12,
+                    ),
+                    Text('Rp. 10.430.000 / Rp. 40.000.000',
+                        style: kBody2.copyWith(
+                          color: kGrey,
+                        ),
+                    ),
+                    const Spacer(),
+                    Align(
+                      alignment: Alignment.bottomRight,
+                      child: Text('Last saving February 19',
+                          style: kCaption.copyWith(
+                            color: kLightGray,
+                          ),
+                      ),
+                    ),
+                  ],
+                ),
+              )
             ],
           ),
         ),
