@@ -6,6 +6,90 @@ import 'package:saving_app/styles/text_style.dart';
 class PortfolioPage extends StatelessWidget {
   const PortfolioPage({super.key});
 
+  Widget _portofolioCardList(
+      String icon,
+      String title,
+      double percent,
+      String amount,
+      String time
+      ) {
+    return Container(
+      margin: const EdgeInsets.only(
+        left: 30,
+        right: 30,
+        top: 20,
+      ),
+      padding: const EdgeInsets.fromLTRB(15, 19, 15, 14),
+      constraints: const BoxConstraints.expand(height: 130),
+      decoration: BoxDecoration(
+        color: kWhite,
+        borderRadius: const BorderRadius.all(Radius.circular(15)),
+        boxShadow: [
+          BoxShadow(
+            color: kGrey,
+            blurRadius: 3,
+            offset: Offset.fromDirection(1, 2),
+          ),
+        ],
+      ),
+      child: Row(
+        children: [
+          Container(
+            height: 55,
+            width: 55,
+            child: CircleAvatar(
+              backgroundColor: kTropicalBlue,
+              child: Image.asset(
+                icon,
+                width: 24,
+              ),
+            ),
+          ),
+          const SizedBox(
+            width: 15,
+          ),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(title, style: kSubtitle1),
+                const SizedBox(
+                  height: 12,
+                ),
+                LinearPercentIndicator(
+                  lineHeight: 4,
+                  percent: percent,
+                  padding: const EdgeInsets.symmetric(horizontal: 0),
+                  progressColor: kBlueRibbon,
+                  backgroundColor: kGrey.withOpacity(0.3),
+                ),
+                const SizedBox(
+                  height: 12,
+                ),
+                Text(
+                  amount,
+                  style: kBody2.copyWith(
+                    color: kGrey,
+                  ),
+                ),
+                const Spacer(),
+                Align(
+                  alignment: Alignment.bottomRight,
+                  child: Text(
+                    time,
+                    style: kCaption.copyWith(
+                      color: kLightGray,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          )
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -50,78 +134,40 @@ class PortfolioPage extends StatelessWidget {
             ]),
           ),
         ),
-        Container(
-          margin: const EdgeInsets.only(
-            left: 30,
-            right: 30,
-            top: 20,
-          ),
-          padding: const EdgeInsets.fromLTRB(15, 19, 15, 14),
-          constraints: const BoxConstraints.expand(height: 130),
-          decoration: BoxDecoration(
-            color: kWhite,
-            borderRadius: const BorderRadius.all(Radius.circular(15)),
-            boxShadow: [
-              BoxShadow(
-                color: kGrey,
-                blurRadius: 3,
-                offset: Offset.fromDirection(1, 2),
-              ),
-            ],
-          ),
-          child: Row(
-            children: [
-              Container(
-                height: 55,
-                width: 55,
-                child: CircleAvatar(
-                  backgroundColor: kTropicalBlue,
-                  child: Image.asset(
-                    'assets/icons/pension.png',
-                    width: 24,
-                  ),
-                ),
-              ),
-              const SizedBox(
-                width: 15,
-              ),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text('Pension savings funds', style: kSubtitle1),
-                    const SizedBox(
-                      height: 12,
-                    ),
-                    LinearPercentIndicator(
-                      lineHeight: 4,
-                      percent: 0.3,
-                      padding: const EdgeInsets.symmetric(horizontal: 0),
-                      progressColor: kBlueRibbon,
-                      backgroundColor: kGrey.withOpacity(0.3),
-                    ),
-                    const SizedBox(
-                      height: 12,
-                    ),
-                    Text('Rp. 10.430.000 / Rp. 40.000.000',
-                        style: kBody2.copyWith(
-                          color: kGrey,
-                        ),
-                    ),
-                    const Spacer(),
-                    Align(
-                      alignment: Alignment.bottomRight,
-                      child: Text('Last saving February 19',
-                          style: kCaption.copyWith(
-                            color: kLightGray,
-                          ),
-                      ),
-                    ),
-                  ],
-                ),
-              )
-            ],
-          ),
+        _portofolioCardList(
+          'assets/icons/pension.png',
+          'Pension savings funds',
+          0.3,
+          'Rp. 10.430.000 / Rp. 40.000.000',
+          'Last saving February 19',
+        ),
+        _portofolioCardList(
+          'assets/icons/camera.png',
+          'Camera',
+          0.5,
+          'Rp. 2.050.000 / Rp. 4.000.000',
+          'Last saving February 16',
+        ),
+        _portofolioCardList(
+          'assets/icons/camera.png',
+          'Camera',
+          0.5,
+          'Rp. 2.050.000 / Rp. 4.000.000',
+          'Last saving February 16',
+        ),
+        _portofolioCardList(
+          'assets/icons/camera.png',
+          'Camera',
+          0.5,
+          'Rp. 2.050.000 / Rp. 4.000.000',
+          'Last saving February 16',
+        ),
+        _portofolioCardList(
+          'assets/icons/camera.png',
+          'Camera',
+          0.5,
+          'Rp. 2.050.000 / Rp. 4.000.000',
+          'Last saving February 16',
         ),
       ]),
     );
